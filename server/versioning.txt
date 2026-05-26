@@ -1,0 +1,25 @@
+Express latest version - 5.2.1
+
+So here exists three parts in it :
+1. First Part - 5
+2. Second Part - 2
+3. Third Part - 1
+
+So here:
+-the third part is for minor fixes and are optional updates
+-the second part is for reccomended bug fixes and security fix updates
+-the first part is for major release - major/breaking update
+
+You can be okay with second and third part update as they are okay to be continue with but if firts part updates then there will be some major changes which are good to go for newer applications but if you are using existing ones then you should use that particular one only
+
+To get a particular version install of express:
+npm install express@4.18.2
+
+To uninstall express version or as exist:
+npm uninstall express
+
+^4.18.2
+^ - It suggests that install all reccomended and minor fixes automatically, like from 4.18.2 --> 4.18.3 or 4.19.2 automatically
+
+~4.18.2
+~ - It installs minor fixes automatically, like 4.18.2 --> 4.18.3 automatically
