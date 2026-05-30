@@ -37,14 +37,18 @@ user.get('/api/users',(req,res)=>{
 user.get('/api/users/:id', (req,res)=>{
     const id = Number(req.params.id);
     const user = users.find((user) => user.id == id);
+    if(!user) return res.status(404).json({error : "User not found!"});
     return res.json(user);
 });
 
 user.post('/api/users',(req,res)=>{
     const body = req.body; //create a body
+    if(!body || !body.first_name || !body.last_name || !body.email || !body.gender || !body.job_title){
+        res.status(400).json({msg:"All fields are required"});
+    }
     users.push({id: users.length + 1, ...body}); //in the users json file we push the body splited and also the id by user's length
     fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err,data) => { //now we process the database query, using fs module
-        return res.json({status:"success",id:users.length});
+        return res.status(201).json({status:"success",id:users.length});
     }) 
 });
 
@@ -64,6 +68,7 @@ user.route('/api/users/:id')
 .get((req,res)=>{
     const id = Number(req.params.id);
     const user = users.find((user) => user.id == id);
+    if(!user) return res.status(404).json({error : "User not found!"});
     return res.json(user);
 })
 
