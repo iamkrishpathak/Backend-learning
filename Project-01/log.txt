@@ -28,3 +28,8 @@
 1780228051716 -- ::1 : GET --> /api/users/6a1c1c4b8187c0d3070c2aa6
 1780228314581 -- ::1 : PATCH --> /api/users/6a1c1c4b8187c0d3070c2aa6
 1780228368770 -- ::1 : PATCH --> /api/users/6a1c1eda45243bef8061cfb2
+1780248465751 -- ::1 : GET --> /api/users/
+1780248515262 -- ::1 : GET --> /api/users/
+1780248558369 -- ::1 : POST --> /api/users
+1780248594272 -- ::1 : GET --> /api/users/6a1c6fee065e598d7af01570
+1780248603693 -- ::1 : DELETE --> /api/users/6a1c6fee065e598d7af01570
