@@ -1,0 +1,5 @@
+Mongoose - contains schemas
+    Schema - defines the structure, and contains model
+        Models - using models we do CRUD operations
+
+Mongoose --> Schema --> Models --> CRUD operations
