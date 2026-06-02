@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const urlSchema = new mongoose.schema({
+const urlSchema = new mongoose.Schema({
     shortID: {
         type: String,
         required: true,
@@ -10,11 +10,10 @@ const urlSchema = new mongoose.schema({
         type: String,
         required: true,
     },
-    visitHistory : [{
-        timestamp: {type:Number,} 
-    }],
+    visitHistory : [{ timestamp: {type:Number} }],
 },
-{ timestamp: true});
+{ timestamp: true}
+);
 
 const URL = mongoose.model('url', urlSchema);
 
