@@ -2,6 +2,7 @@ const express = require("express");
 const {connectToDb} = require("./connection");
 const path = require("path");
 const urlRoute = require("./routes/url");
+const staticRouter = require("./routes/staticRouter");
 const URL = require("./models/url");
 const { url } = require("inspector");
 
@@ -16,21 +17,17 @@ connectToDb("mongodb://localhost:27017/short-url").then(() =>
 app.set("view engine","ejs");
 app.set("views", path.resolve("./views"));
 
+//it is used to tell express that we will use json as well as urlFormData
 app.use(express.json());
-
-app.get("/test", async (req,res) => {
-    const allUrls = await URL.find({});
-    return res.render("home",{
-        urls : allUrls
-    });
-});
+app.use(express.urlencoded( {extended: false}));
 
 app.use("/url", urlRoute);
+app.use("/", staticRouter);
 
 app.get("/url/:shortId", async (req,res) => {
     const shortId = req.params.shortId;
     const entry = await URL.findOneAndUpdate({
-        shortId : shortId
+        shortID : shortId
     },
     {
         $push: {
