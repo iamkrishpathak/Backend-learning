@@ -1,9 +1,15 @@
 const express = require("express");
-const {connectToDb} = require("./connection");
 const path = require("path");
+const cookieParser = require("cookie-parser");
+const {connectToDb} = require("./connection");
+const { restrictToLoginUserOnly } = require("./middlewares/auth")
+
+const URL = require("./models/url"); 
+
 const urlRoute = require("./routes/url");
 const staticRouter = require("./routes/staticRouter");
-const URL = require("./models/url");
+const userRoute = require("./routes/user");
+
 const { url } = require("inspector");
 
 const app = express();
@@ -20,8 +26,10 @@ app.set("views", path.resolve("./views"));
 //it is used to tell express that we will use json as well as urlFormData
 app.use(express.json());
 app.use(express.urlencoded( {extended: false}));
+app.use(cookieParser());
 
 app.use("/url", urlRoute);
+app.use("/user", userRoute);
 app.use("/", staticRouter);
 
 app.get("/url/:shortId", async (req,res) => {
