@@ -14,7 +14,9 @@
     <!--Initially we do not have ID, so this if block will execute after second time rendering-->
     <h1>URL Shortner</h1>
     <% if (locals.id) { %>
-     <p>URL Generated : http://localhost:8001/url/<%= id %></p>
+     <p>
+        URL Generated : <a href="http://localhost:8001/url/<%= id %>">Recently Created Short URL</a>
+     </p>
     <% } %>
 
     <!--This div will execute on first rendering and a form will load up on local host ${PORT}-->

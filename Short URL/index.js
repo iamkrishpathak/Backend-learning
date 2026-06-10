@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const {connectToDb} = require("./connection");
-const { restrictToLoginUserOnly } = require("./middlewares/auth")
+const { restrictToLoginUserOnly, checkAuth } = require("./middlewares/auth")
 
 const URL = require("./models/url"); 
 
@@ -28,9 +28,9 @@ app.use(express.json());
 app.use(express.urlencoded( {extended: false}));
 app.use(cookieParser());
 
-app.use("/url", urlRoute);
+app.use("/url", restrictToLoginUserOnly, urlRoute);
 app.use("/user", userRoute);
-app.use("/", staticRouter);
+app.use("/", checkAuth, staticRouter);
 
 app.get("/url/:shortId", async (req,res) => {
     const shortId = req.params.shortId;
