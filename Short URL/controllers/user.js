@@ -1,4 +1,4 @@
-const {v4:uuidv4} = require("uuid");
+
 const User = require("../models/user");
 const { setUser } = require("../services/auth");
 
@@ -19,9 +19,8 @@ async function handleLogin(req,res){
     if(!user) return res.render("login", {
         error : "Invalid usernme or password",
     })
-    const sessionId = uuidv4();
-    setUser(sessionId,user);
-    res.cookie('uid',sessionId);
+    const token = setUser(user);
+    res.cookie("uid",token);
     return res.redirect("/");
 }
 
